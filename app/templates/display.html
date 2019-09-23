@@ -1,0 +1,109 @@
+<script type="text/javascript">// <![CDATA[
+        function getName(name){
+          img = name;
+          name = name.replace('a_', '');
+          name = name.replace('e_', '');
+          name = name.substring(0, name.indexOf('_'));
+          document.getElementById(img).insertAdjacentHTML('beforeend', name);
+        }
+// ]]></script>
+
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<style>
+  div.gallery {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    background-color: #fefefe;
+    float: left;
+    width: 150px;
+    font-size:80%;
+    text-align: center;
+    transition: transform .1s;
+  }
+
+  div.gallery:hover {
+    border: 1px solid #777;
+    transform: scale(1.5);
+    z-index: 5;
+  }
+
+  div.gallery img {
+    width: 100%;
+    height: auto;
+    padding-bottom:0.5em;
+  }
+</style>
+
+<div style="text-align:center">
+  <br>
+    <div style="float: left; width: 33%">
+        <form action="/graph">
+            <input class="buttonNorm" type = 'submit' value='Generate map'>
+        </form>
+    </div>
+    <div style="float: left; width: 33%">
+      <form action="/download">
+          <input class="buttonNorm" type = 'submit' value='Download as zip'>
+      </form>
+    </div>
+    <div style="float: left; width: 33%">
+      <form action="/upload">
+          <input class="buttonNorm" type = 'submit' value='Upload more files'>
+      </form>
+    </div>
+</div>
+
+
+<div style="text-align:center">
+  <br>
+  <div style="float: left; width: 50%">
+    <h3>Abnormal({{ abnormfiles|length }})</h3>
+  </div>
+
+  <div style="float: left; width: 50%">
+    <h3>Echolocation({{ echofiles|length }})</h3>
+  </div>
+</div>
+
+<br>
+<br>
+
+<hr>
+
+<br>
+<br>
+
+<div class= "split leftcol">
+  {% for pic in abnormfiles %}
+    <div id="{{ pic }}" class = "gallery">
+      {{ forloop.counter }}
+      <img name="{{ pic }}" src="/media/{{user.id}}/test_images/{{ pic }}" alt="getName('{{ pic }}')" />
+      <script type="text/javascript">getName("{{ pic }}");</script>
+    </div>
+
+    {% empty %}
+       <li>We didn't find any abnormal pulses</li>
+
+  {% endfor %}
+</div>
+
+<div class= "split rightcol">
+  {% for pic in echofiles %}
+    <div id="{{ pic }}" class = "gallery">
+      {{ forloop.counter }}
+      <img src="/media/{{user.id}}/test_images/{{ pic }}" alt="{{ pic }}" />
+      <script type="text/javascript">getName("{{ pic }}");</script>
+    </div>
+
+    {% empty %}
+       <li>We didn't find any echolocation pulses</li>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

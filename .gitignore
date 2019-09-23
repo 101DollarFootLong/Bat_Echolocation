@@ -1,0 +1,6 @@
+*.pyc
+*.h
+*.sqlite3
+*.DS_Store
+*.sublime-project
+media/

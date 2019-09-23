@@ -1,0 +1,24 @@
+celery>=4.0
+Django>=2.0.4
+django-appconf==1.0.3
+django-imagekit==4.0.2
+django-material==1.2.2
+guano >= 0.0.1
+gunicorn >= 19
+h5py==2.9.0
+Keras==2.2.4
+Keras-Applications==1.0.7
+Keras-Preprocessing==1.0.9
+matplotlib==3.0.3
+numpy==1.16.2
+pandas==0.24.2
+Pillow==6.0.0
+chart_studio >= 0.0.1
+scikit-image==0.15.0
+scikit-learn==0.20.3
+scipy==1.2.1
+sklearn==0.0
+tensorboard==1.13.1
+tensorflow==1.13.1
+tensorflow-estimator==1.13.0
+whitenoise >= 0.0.1
